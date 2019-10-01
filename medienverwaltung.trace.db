@@ -1,0 +1,4 @@
+2019-10-01 22:03:22 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "ENTRY" nicht gefunden
+Table "ENTRY" not found; SQL statement:
+insert into entry (check_in , check_out) values (parsedatetime('12-02-2009 23:33:22.00', 'dd-MM-yyyy HH:mm:ss.SS'), parsedatetime('12-02-2019 23:33:22.00','dd-MM-yyyy HH:mm:ss.SS')) [42102-199]
