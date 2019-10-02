@@ -1,5 +1,7 @@
 package ch.zli.medienverwaltung.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -21,12 +23,15 @@ public class Medium {
     private String description;
 
     @OneToOne(mappedBy = "medium")
+    @JsonIgnore
     private BoardGame boardGame;
 
     @OneToOne(mappedBy = "medium")
+    @JsonIgnore
     private Book book;
 
     @OneToOne(mappedBy = "medium")
+    @JsonIgnore
     private DVD dvd;
 
     public Long getId() {

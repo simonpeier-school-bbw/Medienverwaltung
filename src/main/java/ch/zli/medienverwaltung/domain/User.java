@@ -1,5 +1,7 @@
 package ch.zli.medienverwaltung.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -27,12 +29,15 @@ public class User {
     private List<String> roles;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<BoardGame> boardGames;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Book> books;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<DVD> dvds;
 
     public Long getId() {
