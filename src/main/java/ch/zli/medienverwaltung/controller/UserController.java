@@ -19,14 +19,18 @@ public class UserController {
         this.userService = userService;
     }
 
+    // Holt alle Users aus der DB und übergibt diese dem Model.
+    // Zutückgegeben wird 'users', was wiederum das file users.html aufruft. Da alle Users dem Model hinzugefügt
+    // worden sind, kann das HTMl mithilfe von Thymeleaf die Users darstellen.
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public String getAllUsers(Model model) {
+    public String showUsers(Model model) {
         model.addAttribute("userList", userService.findAll());
         model.addAttribute("user", new User());
         return "users";
     }
 
+    // Fügt der DB einen User hinzu
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public String addUser(@Valid User user, Model model) {
@@ -34,6 +38,7 @@ public class UserController {
         return "redirect:/users";
     }
 
+    // Löscht einen User aus der DB
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public String deleteUser(@PathVariable Long id, Model model) {
@@ -41,6 +46,7 @@ public class UserController {
         return "redirect:/users";
     }
 
+    // Bearbeitet einen User in der DB
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public User updateUser(@Valid @RequestBody User user, @PathVariable Long id) {

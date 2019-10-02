@@ -17,18 +17,21 @@ public class BookController {
         this.bookService = bookService;
     }
 
+    // Gibt alle Bücher aus der DB zurück
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<Book> getAllBooks() {
         return bookService.getAllBooks();
     }
 
+    // Fügt der DB ein Buch hinzu
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Book addBook(@Valid @RequestBody Book book) {
         return bookService.addBook(book);
     }
 
+    // Löscht ein Buch aus der DB
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteBook(@PathVariable Long id) {

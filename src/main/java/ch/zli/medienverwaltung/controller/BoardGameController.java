@@ -17,22 +17,24 @@ public class BoardGameController {
         this.boardGameService = boardGameService;
     }
 
+    // Holt alle Brettspiele aus der DB
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<BoardGame> getAllBoardGames() {
         return boardGameService.getAllBoardGames();
     }
 
+    // Fügt ein Brettspiel in der DB hinzu
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public BoardGame addBoardGame(@Valid @RequestBody BoardGame boardGame) {
         return boardGameService.addBoardGame(boardGame);
     }
 
+    // Löscht ein Brettspiel aus der DB
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteBoardGame(@PathVariable Long id) {
         boardGameService.deleteBoardGameById(id);
-
     }
 }

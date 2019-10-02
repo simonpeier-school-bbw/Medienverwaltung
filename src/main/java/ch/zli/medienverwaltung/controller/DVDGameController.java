@@ -17,18 +17,21 @@ public class DVDGameController {
         this.dvdService = dvdService;
     }
 
+    // Holt alle DVD's aus der DB
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<DVD> getAllDVDs() {
         return dvdService.getAllDVDs();
     }
 
+    // Fügt der DB eine neue DVD hinzu
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public DVD addDVD(@Valid @RequestBody DVD dvd) {
         return dvdService.addDVD(dvd);
     }
 
+    // Löscht eine DVD aus der DB
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteDVD(@PathVariable Long id) {
