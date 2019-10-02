@@ -3,13 +3,14 @@ package ch.zli.medienverwaltung.controller;
 import ch.zli.medienverwaltung.domain.User;
 import ch.zli.medienverwaltung.service.UserService;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
-@RestController
-@RequestMapping("/users")
+@Controller
+@RequestMapping("/api/users")
 public class UserController {
 
     private UserService userService;
@@ -20,25 +21,29 @@ public class UserController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<User> getAllUsers() {
-        return userService.findAll();
+    public String getAllUsers(Model model) {
+        model.addAttribute("userList", userService.findAll());
+        model.addAttribute("user", new User());
+        return "users";
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public User createEntry(@Valid @RequestBody User user) {
-        return userService.createUser(user);
+    public String addUser(@Valid User user, Model model) {
+        userService.createUser(user);
+        return "redirect:/users";
     }
 
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteEntry(@PathVariable Long id) {
+    public String deleteUser(@PathVariable Long id, Model model) {
         userService.deleteUserById(id);
+        return "redirect:/users";
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public User updateEntry(@Valid @RequestBody User user, @PathVariable Long id) {
+    public User updateUser(@Valid @RequestBody User user, @PathVariable Long id) {
         return userService.updateUser(user, id);
     }
 }
