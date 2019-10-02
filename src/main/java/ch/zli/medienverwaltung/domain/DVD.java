@@ -14,8 +14,11 @@ public class DVD {
     @Column(nullable = false)
     private int playingTime;
 
-    // foreign key for medium
-    // foreign key for user
+    @ManyToOne
+    private User user;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Medium medium;
 
     public Long getId() {
         return id;
@@ -39,5 +42,21 @@ public class DVD {
 
     public void setPlayingTime(int playingTime) {
         this.playingTime = playingTime;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Medium getMedium() {
+        return medium;
+    }
+
+    public void setMedium(Medium medium) {
+        this.medium = medium;
     }
 }

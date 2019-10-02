@@ -26,6 +26,15 @@ public class User {
     @ElementCollection
     private List<String> roles;
 
+    @OneToMany(mappedBy = "user")
+    private List<BoardGame> boardGames;
+
+    @OneToMany(mappedBy = "user")
+    private List<Book> books;
+
+    @OneToMany(mappedBy = "user")
+    private List<DVD> dvds;
+
     public Long getId() {
         return id;
     }
@@ -72,5 +81,29 @@ public class User {
 
     public void setRoles(List<String> roles) {
         this.roles = roles;
+    }
+
+    public List<BoardGame> getBoardGames() {
+        return boardGames;
+    }
+
+    public void setBoardGames(List<BoardGame> boardGames) {
+        this.boardGames = boardGames;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+
+    public List<DVD> getDvds() {
+        return dvds;
+    }
+
+    public void setDvds(List<DVD> dvds) {
+        this.dvds = dvds;
     }
 }

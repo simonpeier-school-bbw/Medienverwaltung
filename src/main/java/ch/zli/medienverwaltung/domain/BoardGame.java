@@ -17,8 +17,12 @@ public class BoardGame {
     @Column(nullable = false)
     private String difficulty;
 
+    @ManyToOne
+    private User user;
+
     // foreign key for medium
-    // foreign key for user
+    @OneToOne(cascade = CascadeType.ALL)
+    private Medium medium;
 
     public Long getId() {
         return id;
@@ -50,5 +54,21 @@ public class BoardGame {
 
     public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Medium getMedium() {
+        return medium;
+    }
+
+    public void setMedium(Medium medium) {
+        this.medium = medium;
     }
 }

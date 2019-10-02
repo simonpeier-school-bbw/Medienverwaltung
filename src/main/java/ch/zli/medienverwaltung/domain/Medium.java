@@ -20,6 +20,15 @@ public class Medium {
     @Column(nullable = false)
     private String description;
 
+    @OneToOne(mappedBy = "medium")
+    private BoardGame boardGame;
+
+    @OneToOne(mappedBy = "medium")
+    private Book book;
+
+    @OneToOne(mappedBy = "medium")
+    private DVD dvd;
+
     public Long getId() {
         return id;
     }
@@ -58,5 +67,29 @@ public class Medium {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public BoardGame getBoardGame() {
+        return boardGame;
+    }
+
+    public void setBoardGame(BoardGame boardGame) {
+        this.boardGame = boardGame;
+    }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
+    public DVD getDvd() {
+        return dvd;
+    }
+
+    public void setDvd(DVD dvd) {
+        this.dvd = dvd;
     }
 }

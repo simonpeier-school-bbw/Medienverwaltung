@@ -14,8 +14,11 @@ public class Book {
     @Column(nullable = false)
     private String pages;
 
-    // foreign key for medium
-    // foreign key for user
+    @ManyToOne
+    private User user;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Medium medium;
 
     public Long getId() {
         return id;
@@ -39,5 +42,21 @@ public class Book {
 
     public void setPages(String pages) {
         this.pages = pages;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Medium getMedium() {
+        return medium;
+    }
+
+    public void setMedium(Medium medium) {
+        this.medium = medium;
     }
 }
